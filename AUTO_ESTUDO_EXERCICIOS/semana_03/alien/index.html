@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício do Alien</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+    <style> body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; } </style>
+</head>
+
+<body>
+    <script>
+        // Definindo a escala do jogo
+        const gameWidth = 700;
+        const gameHeight = 850;
+
+        // Configurações do jogo no phaser
+        const config = {
+            type: Phaser.AUTO,
+            width: gameWidth,
+            height: gameHeight,
+
+            // Colocando física no jogo:
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 300 },
+                    debug: false
+                }
+            },
+
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            }
+        };
+
+        // Cria o objeto de variáveis globais
+        const gameState = { lives: 3, score: -1 };
+        const platforms = [];
+
+        // Inicializando o jogo'
+        const game = new Phaser.Game(config);
+
+        function preload() {
+            // Carregando as imagens:
+            this.load.image('background', 'assets/bg.png');
+            this.load.image('player', 'assets/alien.png');
+            this.load.image('turbo', 'assets/turbo.png');
+            this.load.image('platform', 'assets/brick.png');
+            this.load.image('coin', 'assets/coin.png');
+            this.load.image('anvil', 'assets/anvil.png');
+            this.load.image('heart', 'assets/heart.png');
+            this.load.image('floor', 'https://content.codecademy.com/courses/learn-phaser/physics/platform.png');
+        }
+
+        function create() {
+            // Adicionando o background
+            this.add.image(gameWidth/2, gameHeight/2, 'background');
+
+            // Adicionando os corações
+            gameState.hearts = [];
+            for (let i = 0; i < gameState.lives; i++){
+                gameState.hearts[i] = this.add.image(60*(i+1), 790, 'heart')
+            };
+            
+
+
+            // Adicionando o turbo (foguinho)
+            gameState.fire = this.add.sprite(0, 0, 'turbo');
+            gameState.fire.setVisible(false);
+
+            // Adicionando o alien
+            gameState.alien = this.physics.add.sprite(gameWidth/2, 0, 'player');
+
+            // Adicionando a plataforma
+            platforms[0] = this.physics.add.staticGroup();
+            platforms[0].create(200, gameHeight/2, 'platform');
+            platforms[1] = this.physics.add.staticGroup();
+            platforms[1].create(500, gameHeight/2, 'platform');
+
+            // Adicionando as moedas
+            gameState.coin = this.physics.add.sprite(gameWidth/2, 0, 'coin');
+            gameState.coin.setCollideWorldBounds(true);
+            gameState.coin.setBounce(0.8);
+
+            // Adicionando placar
+            gameState.scoreboard = this.add.text(50, 50, `Coins:${gameState.score}`, { fontSize: '45px', fill: '#000000' }); 
+
+            // Adicionando o chão
+            const floor = this.physics.add.staticGroup();
+            floor.create(gameWidth/2, 840, 'floor').setScale(2, .3).refreshBody();
+            floor.setVisible(false)
+
+
+            // Adicionando colisões:
+            gameState.alien.setCollideWorldBounds(true);
+            for(let i = 0; i < 2; i++){
+                this.physics.add.collider(platforms[i], gameState.coin);
+                this.physics.add.collider(platforms[i], gameState.alien);
+            }
+            
+
+
+            // Adicionando overlap alien e moeda:
+            this.physics.add.overlap(gameState.alien, gameState.coin, () => {
+                if (gameState.score >= 4){
+                    gameState.score += 1;
+                    gameState.scoreboard.destroy();
+                    gameState.scoreboard = this.add.text(50, 50, `Coins:${gameState.score}`, { fontSize: '45px', fill: '#000000' });
+                    this.physics.pause();
+                    this.add.text(50, 100, 'Congratulations, you Won! :)', { fontSize: '20px', fill: '#000000' });
+                    this.add.text(50, 130, 'Click to Restart', { fontSize: '20px', fill: '#000000' });
+                    anvilGeneratorLoop.destroy();
+
+                    this.input.on('pointerup', () => {
+                        gameState.score = -1;
+                        this.scene.restart();
+                        gameState.lives = 3;
+                    })
+                }else{
+                    gameState.coin.setVisible(false);
+                    let coinPositionY = Phaser.Math.RND.between(100, 650);
+                    gameState.coin.setPosition(coinPositionY, 100);
+                    gameState.score += 1;
+                    gameState.scoreboard.setText(`Coins:${gameState.score}`);
+                    gameState.coin.setVisible(true);
+                }
+            })
+
+
+            // Configurando o teclado
+            gameState.cursors = this.input.keyboard.createCursorKeys();
+
+            // ---------
+            // Configurando as bigornas:
+
+            const anvils = this.physics.add.group({ setScale: { x: .1, y: .1 } });
+
+            // Função que cria as bigornas
+            function anvilGenerator() {
+                let anvilPositionX = Math.random() * gameWidth;
+                anvils.create(anvilPositionX, 0, 'anvil');
+                anvils.children.iterate((child) => {child.setScale(.1, .1)}); // Consertando o tamanho das bigornas
+            }
+
+            // Criando um loop de criação:
+            const anvilGeneratorLoop = this.time.addEvent({
+                delay: 500,
+                callback: anvilGenerator,
+                callbackScope: this,
+                loop: true
+            });
+
+            // Criando a colisão das bigornas com o chão e as plataformas:
+            this.physics.add.collider(anvils, floor, (anvil) => {
+                anvil.destroy();
+            });
+            for(let i = 0; i < 2; i++){
+                this.physics.add.collider(anvils, platforms[i], (anvil) => {
+                    anvil.destroy();
+                });
+            }
+            
+            // Criando a colisão das bigornas com o alien:
+            this.physics.add.collider(gameState.alien, anvils, () => {
+                //Perde vida ou encerra o jogo
+                if(gameState.lives > 1){
+                    gameState.hearts[gameState.lives-1].destroy();
+                    gameState.lives -= 1;
+                    gameState.score -= 1;
+                    anvilGeneratorLoop.destroy();
+                    this.scene.restart();
+                }else{
+                    anvilGeneratorLoop.destroy();
+                    gameState.hearts[gameState.lives-1].destroy();
+                    this.physics.pause();
+                    this.add.text(50, 100, `GAME OVER`, { fontSize: '20px', fill: '#000000' });
+                    this.add.text(50, 130, "Click to Restart", { fontZide: '20px', fill: '#000000' });
+                    this.input.on('pointerup', () => {
+                        gameState.score = -1;
+                        gameState.lives = 3;
+                        this.scene.restart();
+                    })
+                }       
+            })
+        }
+
+        function update() {
+            // Movimentação no eixo X:
+            if (gameState.cursors.right.isDown){
+                gameState.alien.setVelocityX(150);
+            }else if (gameState.cursors.left.isDown){
+                gameState.alien.setVelocityX(-150);
+            }else{
+                gameState.alien.setVelocityX(0);
+            }
+
+            // Movimentação no eixo Y:
+            if (gameState.cursors.up.isDown){
+                gameState.alien.setVelocityY(-150);
+                activateTurbo();
+            }else{
+                deactivateTurbo();
+            }
+            gameState.fire.setPosition(gameState.alien.x, gameState.alien.y + gameState.alien.height/2);
+        }
+        
+        // Colocando o turbo na nave:
+        function activateTurbo(){
+            gameState.fire.setVisible(true);
+        }
+        // Removendo o turbo da nave:
+        function deactivateTurbo(){
+            gameState.fire.setVisible(false);
+        }
+
+    </script>
+</body>
+</html>

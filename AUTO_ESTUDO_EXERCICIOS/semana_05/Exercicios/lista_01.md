@@ -25,7 +25,7 @@ Escolha a opção que responde corretamente:
 
 a) Imprime os números pares de 1 a 10.
 
-b) Imprime os números ímpares de 1 a 10.
+**b) Imprime os números ímpares de 1 a 10.**
 
 c) Imprime os números pares de 2 a 10.
 
@@ -39,7 +39,7 @@ ______
 
 No lugar onde está escrito “// linha” qual das opções abaixo deve estar para funcionar corretamente o código?
 
-A) let carro = new Carro("Toyota");
+**A) let carro = new Carro("Toyota");**
 
 B) let ligar = new ligar("Toyota");
 
@@ -55,7 +55,7 @@ ______
 
 Escolha a opção que responde corretamente:
 
-A) 18
+**A) 18**
 
 B) 16
 
@@ -67,7 +67,7 @@ ______
 
 **4)** Como você criaria um método `acelerar()` em uma classe `Carro`, que recebe um parâmetro `velocidade` e o adiciona a um atributo `velocidadeAtual`?
 
-A) ![Uma imagem](assets/ex04_1.png)
+**A) ![Uma imagem](assets/ex04_1.png)**
 
 B) ![Uma imagem](assets/ex04_2.png)
 
@@ -79,7 +79,7 @@ ______
 
 **5)** Qual a forma correta de definir uma classe Carro em JavaScript, com um método ligar() e um atributo marca?
 
-A) ![Uma imagem](assets/ex05_1.png)
+**A) ![Uma imagem](assets/ex05_1.png)**
 
 B) ![Uma imagem](assets/ex05_2.png)
 
@@ -95,7 +95,7 @@ ______
 
 Qual será a saída do código acima?
 
-A) "Olá, meu nome é João. Olá, meu nome é Maria."
+**A) "Olá, meu nome é João. Olá, meu nome é Maria."**
 
 B) "Olá, meu nome é ."
 
@@ -120,6 +120,24 @@ Criando e manipulando Animais:
 
 Dica: Utilize `console.log()` para exibir as informações!
 
+```javascript
+class Animal{
+    constructor(nome, idade){
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    descrever(){
+        console.log(`O nome do animal é: ${this.nome}. E sua idade é: ${this.idade}`);
+    }
+}
+
+let cachorro = new Animal('Bob', 4);
+let gato = new Animal('Saori', 7);
+
+cachorro.descrever();
+gato.descrever();
+```
 ______
 
 **8)** Nos últimos dias tivemos a oportunidade de ter contato com Programação Orientada a Objetos, e tivemos contato com o tema "herança". Herança é um princípio de orientação a objetos, que permite que classes compartilhem atributos e métodos. Ela é usada na intenção de reaproveitar código ou comportamento generalizado ou especializar operações ou atributos. Então vamos praticar esse conteúdo nessa questão.

@@ -1,3 +1,3 @@
 # inteli
 
-Github Pages: felipezillo.github.io
+[GitHub Pages](https://felipezillo.github.io/inteli/)

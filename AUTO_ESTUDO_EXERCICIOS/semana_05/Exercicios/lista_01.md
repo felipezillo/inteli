@@ -132,8 +132,8 @@ class Animal{
     }
 }
 
-let cachorro = new Animal('Bob', 4);
-let gato = new Animal('Saori', 7);
+const cachorro = new Animal('Bob', 4);
+const gato = new Animal('Saori', 7);
 
 cachorro.descrever();
 gato.descrever();
@@ -163,6 +163,37 @@ Chamando os Métodos:
 
 Dica: Utilize console.log() para exibir as informações!
 
+```javascript
+class Animal{
+    constructor(nome, idade){
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    descrever(){
+        console.log(`O nome do animal é: ${this.nome}. E sua idade é: ${this.idade}`);
+    }
+}
+
+class Gato extends Animal{
+    constructor(nome, idade, cor){
+        super(nome, idade);
+        this.cor = cor;
+    }
+
+    miar(){
+        console.log('miau');
+    }
+}
+
+const cachorro = new Animal('Bob', 2);
+const gato = new Gato('Saori', 4, 'preto');
+
+cachorro.descrever();
+gato.descrever();
+gato.miar();
+```
+
 
 ______
 
@@ -185,6 +216,29 @@ Chamando o Método para Ver o Total:
 
 Dica: Utilize console.log() para exibir as informações!
 
+```javascript
+class SomadorDeNotas{
+    constructor(){
+        this.total = 0;
+    }
+
+    adicionarNota(nota){
+        this.total += nota;
+    }
+
+    verTotal(){
+        console.log(this.total);
+    }
+}
+
+const somador = new SomadorDeNotas();
+
+for(let i = 0; i <= 2; i++){
+    somador.adicionarNota(Math.floor(Math.random() * 5));
+}
+
+somador.verTotal();
+```
 
 ______
 
@@ -206,3 +260,36 @@ Agora, sua tarefa é escrever um código em JavaScript que crie as classes Funci
 - Para cada objeto, chame o método calcularSalario() e mostre o salário calculado no console.
 
 Certifique-se de explicar cada parte do código utilizando comentários, explicando para que serve cada atributo e método, bem como a lógica por trás do cálculo de salário para o tipo de funcionário Professor.
+
+```javascript
+class Funcionario{
+    constructor(nome, idade, salarioBase){
+        this.nome = nome;
+        this.idade = idade;
+        this.salarioBase = salarioBase;
+    }
+
+    calcularSalario(){
+        return this.salarioBase;
+    }
+}
+
+class Professor extends Funcionario{
+    constructor(nome, idade, salarioBase, disciplina, horasAula){
+        super(nome, idade, salarioBase);
+        this.disciplina = disciplina;
+        this.horasAula = horasAula;
+    }
+
+    calcularSalario(){
+        const valorHoraAula = Math.floor(Math.random()* 60) + 50;
+        return this.salarioBase + (this.horasAula * valorHoraAula);
+    }
+}
+
+const professorA = new Professor('Guilherme', 40, 1412, 'cálculo', 50);
+const professorB = new Professor('Alice', 34, 1412, 'mecânica dos fluidos', 60);
+
+console.log(professorA.calcularSalario());
+console.log(professorB.calcularSalario());
+```

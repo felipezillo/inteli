@@ -5,8 +5,8 @@ class Menu extends Phaser.Scene{
 
     preload(){
         //Carregamento das imagens
-        this.load.image('startButton', '../assets/startButton.png');
-        this.load.spritesheet('kakashi', '../assets/Kakashi_Right.png', { frameWidth: 90, frameHeight: 90 });
+        this.load.image('startButton', 'assets/startButton.png');
+        this.load.spritesheet('kakashi', 'assets/Kakashi_Right.png', { frameWidth: 90, frameHeight: 90 });
     }
 
     create(){

@@ -12,15 +12,15 @@
 
     preload(){
         //Carregamento das imagens e sprites 
-        this.load.spritesheet('kakashiRight', 'assets/Kakashi_Right.png', { frameWidth: 90, frameHeight: 90 });
-        this.load.spritesheet('kakashiLeft', 'assets/Kakashi_Left.png', { frameWidth: 90, frameHeight: 90 });
-        this.load.spritesheet('zabuza', 'assets/zabuza.png', { frameWidth: 70, frameHeight: 80 });
-        this.load.spritesheet('enemy', 'assets/enemy.png', { frameWidth: 50, frameHeight: 65 });
-        this.load.spritesheet('enemyDT', 'assets/enemy_dt.png', { frameWidth: 68, frameHeight: 53 });
-        this.load.spritesheet('weapon', 'assets/weapon.png', { frameWidth: 35, frameHeight: 30});
-        this.load.image('bg', 'assets/dojo.jpg');
-        this.load.image('mangekyou', 'assets/mangekyou.png');
-        this.load.image('floor', 'assets/platform.png');
+        this.load.spritesheet('kakashiRight', './assets/Kakashi_Right.png', { frameWidth: 90, frameHeight: 90 });
+        this.load.spritesheet('kakashiLeft', './assets/Kakashi_Left.png', { frameWidth: 90, frameHeight: 90 });
+        this.load.spritesheet('zabuza', './assets/zabuza.png', { frameWidth: 70, frameHeight: 80 });
+        this.load.spritesheet('enemy', './assets/enemy.png', { frameWidth: 50, frameHeight: 65 });
+        this.load.spritesheet('enemyDT', './assets/enemy_dt.png', { frameWidth: 68, frameHeight: 53 });
+        this.load.spritesheet('weapon', './assets/weapon.png', { frameWidth: 35, frameHeight: 30});
+        this.load.image('bg', './assets/dojo.jpg');
+        this.load.image('mangekyou', './assets/mangekyou.png');
+        this.load.image('floor', './assets/platform.png');
     }
 
     create(){

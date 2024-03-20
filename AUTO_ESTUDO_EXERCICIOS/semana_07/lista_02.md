@@ -246,6 +246,13 @@ ______
 
 **7)** Implemente o pseudocódigo para o algoritmo representado no fluxograma da imagem.
 ![Uma imagem](assets/image.png)
+
+```python
+int -> input(idade)
+if idade < 16: print("Não pode votar!")
+else if idade < 18: print("Voto facultativo!")
+else: print("Voto obrigatório!")
+```
 ______
 
 **8)** Considere a implementação da classe base FormaGeometrica em um sistema de modelagem de formas geométricas. Sua tarefa é implementar, utilizando pseudocódigo, as classes derivadas Retangulo e Circulo, que herdam da classe FormaGeometrica, adicionando atributos específicos e métodos para calcular a área de um retângulo e de um círculo, respectivamente.
@@ -261,11 +268,59 @@ Classe FormaGeometrica:
     Método CalcularArea():
         # Implementação genérica para cálculo de área, a ser sobrescrita pelas subclasses.
 
+
+Classe Retangulo herda FormaGeometrica:
+    Atributos:
+        - cor
+        - lado1
+        - lado2
+
+    Construtor(cor, lado1, lado2):
+        this.cor = cor
+        this.lado1 = lado1
+        this.lado2 = lado2
+
+    Método CalcularArea():
+        retorna this.lado1 * this.lado2
+
+
+Classe Circulo herda FormaGeometrica:
+    Atributos:
+        - cor
+        - raio
+        - pi = 3.14
+
+    Construtor(cor, raio):
+        this.cor = cor
+        this.raio = raio
+
+    Método CalcularArea():
+        retorna pi * (raio ^ 2)
+
 ```
 
 ______
 
 **9)** Você foi contratado(a) como estagiário(a) da Tesla e está participando do desenvolvimento de um programa para simular o desempenho de um carro elétrico em uma corrida. Seu objetivo é determinar em quantos minutos o carro levará para completar uma determinada distância, levando em consideração uma velocidade inicial e uma taxa de aceleração constante. No entanto, você deseja garantir que o carro não exceda uma velocidade máxima nem que a corrida demore mais do que um tempo máximo. Implemente a lógica dessa simulação em pseudocódigo.
+
+```
+constante aceleracao
+constante distanciaTotal
+constante tempoMaximo
+constante velocidadeInicial
+constante velocidadeMaxima
+variavel distanciaPercorrida
+variavel velocidadeAtual
+variavel tempoPercorrido
+
+Enquanto (distancia < distanciaTotal):  // Roda a cada segundo
+    se (velocidadeAtual >= velocidadeMaxima OU tempoPercorrido >= tempoMaximo):
+        Para o loop
+    // Se não:
+    velocidadeAtual += aceleracao
+    distanciaPercorrida = (velocidadeInicial * tempoPercorrido) + (aceleracao * (tempoPercorrido ^ 2))/2 //Fóruma MRUV
+    tempoPercorrido++
+```
 
 
 

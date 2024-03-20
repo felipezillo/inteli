@@ -345,11 +345,32 @@ Função SomaDeMatrizes(matrizA, matrizB):
 
         Retornar matrizResultado
 
+Função MultiplicaçãoDeMatrizes(matrizA, matrizB):
+    #Verifica se as duas matrizes têm o mesmo número de linhas e colunas
+    Se tamanho(matrizA) ≠ tamanho(matrizB) então:
+        Retorna "Erro! Matrizes de tamanhos diferentes não podem ser multiplicadas!"
+    # Senão:
+        linhas <- tamanho(matrizA)
+        colunas <- tamanho(matrizA[0])
+        resultado <- novaMatriz(linhas, colunas)
+        Para i de 0 até linhas-1 faça:
+            resultado[i] <- novaMatriz(tamanho(matriz2[0]))
+            Para j de 0 até colunas-1 faça:
+                soma <- 0
+                Para k de 0 até colunas-1 faça:
+                    soma += matriz[i][k] * matriz2[k][j]
+                resultado[i][j] = soma
+        retorna resultado
+
 # Exemplo de uso da função
 matrizA <- [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 matrizB <- [[9, 8, 7], [6, 5, 4], [3, 2, 1]]
 
 matrizSoma <- SomaDeMatrizes(matrizA, matrizB)
+matrizMultiplicação <- MultiplicaçãoDeMatrizes(matrizA, matrizB)
+Escrever("Produto das matrizes:")
+ImprimirMatriz(matrizMultiplicação)
+Escrever("\n")
 Escrever("Soma das matrizes:")
 ImprimirMatriz(matrizSoma)
 ```

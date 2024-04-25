@@ -14,12 +14,18 @@ O modelo respostas relaciona-se ao Controller Forms, de modo que é onde ficará
 
 ### Controladores (Controllers):
 - Liste os controladores do seu projeto e suas responsabilidades.
-- Users (
-- Descreva as ações (methods) de cada controlador e seus parâmetros de entrada e saída.
-- Explique como os controladores interagem com os modelos e views.
+- Users:
+  É o controlador que irá cuidar dos usuários, responsável por listar as informações e registrá-las, informar o usuário o que for necessário, cadastrar um usuário novo e logar o usuário no site. Cada uma dessas se relaciona com uma ou mais páginas do site, representadas nas views, assim como cada método também se relaciona com o modelo "Users" descrito acima.
+
+- Forms:
+  São os formulários que deverão ser respondidos pelo usuário, sendo o controlador responsável por apresentar as informações/perguntas na tela e coletar as respostas do usuário, armazenando-as no banco de dados.
 
 ### Views (Views):
-- Liste as views do seu projeto e sua função.
+- Home Page:
+  É a página inicial que será exibida pela aplicação. Nela estarão contidos: um header, um local onde haverá informações sobre o INSPA e um local onde haverá informações sobre o projeto Abandono - em si.
+
+- Formulário:
+  É a página que serão exibidos os formulários a serem respondidos pelo usuário...
 
 ### Infraestrutura:
 

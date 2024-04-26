@@ -22,23 +22,25 @@ O modelo respostas relaciona-se ao Controller Forms, de modo que é onde ficará
 
 ### Views (Views):
 - Home Page:
-  É a página inicial que será exibida pela aplicação. Nela estarão contidos: um header, um local onde haverá informações sobre o INSPA e um local onde haverá informações sobre o projeto Abandono - em si.
+  É a página inicial que será exibida pela aplicação. Nela estarão contidos: um header onde haverá uma barra de navegação, um local onde haverá informações sobre o INSPA e um local onde haverá informações sobre o projeto Abandono - em si.
 
 - Formulário:
-  É a página que serão exibidos os formulários a serem respondidos pelo usuário...
+  É a página que serão exibidos os formulários a serem respondidos pelo usuário. Nela estarão contidos: um header onde haverá uma barra de navegação, um campo de perguntas e um campo de respostas para que o usuário responsa à pergunta.
+
+- Cadastrar:
+  É a página onde o usuário deverá entrar caso precise criar uma nova conta. Nela estarão contidos: imagens para um melhor desig; um campo para o usuário inserir seu email, relacionando-se ao controller Users; e um campo para o usuário inserir sua senha que irá utilizar, também relacionando-se ao controller Users.
+
+- Login:
+  É a página onde o usuário deverá colocar suas credenciais para entrar em sua conta caso já tenha uma. Ela possui os mesmos atributos do cadastro, com as mesmas ligações, sendo que o que mudará será o tipo de requisição para o banco de dados.
 
 ### Infraestrutura:
-
-- Descreva os componentes de infraestrutura do seu projeto, como bancos de dados, APIs externas e outras dependências.
-- Explique como a infraestrutura se integra à arquitetura MVC.
-
+A aplicação possui um banco de dados relacional, conectado diretamente ao servidor. O banco de dados estará ligado aos models da arquitetura MVC, que representam de forma abstrata as tabelas que serão criadas.
 
 ### Justifique as escolhas feitas e como elas impactam o projeto.
 #### Implicações da Arquitetura:
-Descreva as implicações da arquitetura em termos de escalabilidade, manutenção, testabilidade e outros aspectos importantes.
+O código estruturado com uma arquitetura MVC possui uma vantagem muito grande em questão de manutenção, pois como a arquitetura separa as responsabilidades de cada parte, assim, ao detectar um problema e em qual camada ele está, basta acessá-la para fazer uma manutenção, o que o leva a ter escalabilidade e estabilidade melhroes.
 
-### Recursos Adicionais:
-Documentação do Sails.js: https://github.com/balderdashy/sails
-Tutorial do draw.io: https://m.youtube.com/watch?v=w3zm-wbmlpc
-Exemplos de diagramas MVC: https://www.lucidchart.com/pages/templates
-
+### Arquitetura:
+<img src="assets/mvc1.png" alt="assets/mvc1">
+<img src="assets/mvc2.png" alt="assets/mvc2">
+<img src="assets/mvc3.png" alt="assets/mvc3">

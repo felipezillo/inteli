@@ -13,18 +13,20 @@ Coluna   | Descrição | Tipo de Dado
 **researcher** | Indica se o usuário é um pesquisador | Boolean / Binary
 
 ### Tabela: user_forms
-id: Identificador único do formulário do usuário.
-id_users: Chave estrangeira referenciando a tabela users.
-age: Idade do usuário.
-gender: Gênero do usuário.
-education: Nível de educação do usuário.
-home_type: Tipo de residência do usuário (casa, apartamento ou rural).
-family: Composição familiar do usuário.
-family_income: Renda familiar do usuário.
-home_members: Número de membros na residência do usuário.
-full_name: Nome completo do usuário.
-social_name: Nome social do usuário.
-phone_number: Número de telefone do usuário.
+Coluna   | Descrição | Tipo de Dado 
+--------- | --------- | --------
+**id** | Identificador único do formulário do usuário (PK) | Varchar
+**id_users** | Chave estrangeira referenciando a tabela users (FK) | Varchar
+**age** | Idade do usuário | Integer
+**gender** | Gênero do usuário | Varchar
+**education** | Nível de escolaridade do usuário | Varchar / Selection
+**home_type** | Tipo de residência do usuário | Varchar / Selection
+**family** | Composição familiar do usuário (que moram junto) | Varchar
+**family_income**  | Renda familiar do usuário | Varchar / Selection
+**home_members** | Número de membros na residência do usuário | Integer
+**full_name** | Nome completo do usuário | Varchar
+**social_name** | Nome social do usuário | Varchar
+**phone_number** | Número de telefone do usuário | Varchar
 country: País de residência do usuário.
 state: Estado de residência do usuário.
 city: Cidade de residência do usuário.

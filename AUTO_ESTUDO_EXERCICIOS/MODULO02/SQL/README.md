@@ -78,38 +78,42 @@ Coluna   | Descrição | Tipo de Dado
 **other** | Outros motivos para possuir um cachorro | Text
 
 ### Tabela: had_dog_forms
-id: Identificador único do formulário de usuário que já teve um cachorro.
-id_users: Chave estrangeira referenciando a tabela users.
-name: Nome do cachorro.
-yours: Proprietário do cachorro.
-how_long_with: Tempo que o usuário ficou com o cachorro.
-is_first: Indica se é o primeiro cachorro do usuário.
-other_pets: Indica se o usuário possui outros animais de estimação.
-id_other_pets: Chave estrangeira referenciando a tabela other_pets.
-age_got: Idade do cachorro quando foi adotado.
-neutered: Indica se o cachorro foi castrado.
-months_neutered: Meses desde a castração.
-breed: Raça do cachorro.
-where_got: Local onde o usuário obteve o cachorro.
-price: Preço pago pelo cachorro.
-id_why_dog: Chave estrangeira referenciando a tabela why_dog.
-characteristics_keep: Características do cachorro que levaram o usuário a mantê-lo.
-who_chose_name: Quem escolheu o nome do cachorro.
-what_liked_most: O que o usuário mais gostou nas primeiras semanas do cachorro.
-didnt_like: O que o usuário não gostou no cachorro.
-vet: Quantidade de visitas ao veterinário.
-vet_reasons: Motivos para visitas ao veterinário.
-stop_living_with: Data em que o usuário parou de viver com o cachorro.
-age_at_time: Idade do cachorro na época.
-why_stopped: Motivos para parar de viver com o cachorro.
-another_dog: Indica se o usuário possui outro cachorro.
-why: Motivo para possuir outro cachorro.
+Coluna   | Descrição | Tipo de Dado 
+--------- | --------- | --------
+**id** | Identificador único do formulário de usuário que já teve um cachorro (PK) | Varchar
+**id_users** | Chave estrangeira referenciando a tabela users (FK) | Varchar
+**name** | Nome do cachorro | Varchar
+**yours** | Proprietário do cachorro | Varchar
+**how_long_with** | Tempo que o usuário ficou com o cachorro | Integer
+**is_first** | Indica se é o primeiro cachorro do usuário | Boolean / Binary
+**other_pets** | Indica se o usuário possui outros animais de estimação | Boolean / Binary
+**id_other_pets** | Chave estrangeira referenciando a tabela other_pets (FK) | Varchar
+**age_got** | Idade do cachorro quando foi adotado | Integer
+**neutered** | Indica se o cachorro foi castrado | Boolean / Binary
+**months_neutered** | Meses que tinha ao ser castrado | Integer
+**breed** | Raça do cachorro | Varchar
+**where_got** | Local onde o usuário obteve o cachorro | Varchar
+**price** | Preço pago pelo cachorro | Integer
+**id_why_dog** | Chave estrangeira referenciando a tabela why_dog (FK) | Varchar
+**characteristics_keep** | Características do cachorro que levaram o usuário a mantê-lo | Text
+**who_chose_name** | Quem escolheu o nome do cachorro | Varchar / Selection
+**what_liked_most** | O que o usuário mais gostou nas primeiras semanas do cachorro | Text
+**didnt_like** | O que o usuário não gostou no cachorro | Text
+**vet** | Quantidade de visitas ao veterinário | Integer
+**vet_reasons** | Motivos para visitas ao veterinário | Text
+**stop_living_with** | Data em que o usuário parou de viver com o cachorro | Date
+**age_at_time** | Idade do cachorro na época | Integer
+**why_stopped** | Motivos para parar de viver com o cachorro | Text
+**another_dog** | Indica se o usuário teria outro cachorro | Boolean / Binary 
+**why** | Motivo para possuir outro cachorro | Text
 
 ### Tabela: other_pets
-id: Identificador único de outros animais de estimação.
-cats: Número de gatos do usuário.
-dogs: Número de cachorros do usuário.
-other: Outros animais de estimação do usuário.
+Coluna   | Descrição | Tipo de Dado 
+--------- | --------- | --------
+**id** | Identificador único de outros animais de estimação (PK) | Varchar
+**cats** | Número de gatos do usuário | Integer
+**dogs** | Número de cachorros do usuário | Integer
+**other** | Outros animais de estimação do usuário | Integer
 
 # Relacionamentos
 Um usuário pode preencher muitos formulários, mas cada formulário está associado a apenas um usuário. Portanto, a relação entre users e user_forms é 1:N (um para muitos).
